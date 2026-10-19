@@ -1,0 +1,6 @@
+{
+  "name": "مناحل الأطلس | من خيرات الطبيعة",
+  "description": "متجر إلكتروني فاخر لبيع أجود أنواع العسل الطبيعي المغربي مع خدمة الدفع عند الاستلام والتوصيل لجميع المدن المغربية.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
