@@ -11,6 +11,17 @@ AddDefaultCharset UTF-8
 # منع تصفح المجلدات مباشرة
 Options -Indexes
 
+# تفعيل إعادة التوجيه للـ API
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # إعادة توجيه /api/products إلى /api/products.php وهكذا
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^api/([a-zA-Z0-9_-]+)/?$ api/$1.php [L,QSA]
+</IfModule>
+
 # منع استعراض الملفات المخفية والتهيئة
 <FilesMatch "^\.">
     Order allow,deny
@@ -33,7 +44,7 @@ Options -Indexes
     ExpiresByType application/javascript "access plus 1 week"
 </IfModule>
 
-# حماية إضافية للبيانات
+# حماية إضافية للبيانات الحساسة
 <Files "package.json">
     Order allow,deny
     Deny from all
