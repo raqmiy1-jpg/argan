@@ -183,7 +183,7 @@ $settings = $db['settings'] ?? [];
 
                 <div class="lg:col-span-5 relative">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-[#EDE5D8]">
-                        <img src="assets/images/hero_atlas_honey_1792267326345.jpg" alt="مرطبان عسل الأطلس المغربي الذهبي الطبيعي" class="w-full h-[360px] sm:h-[420px] object-cover">
+                        <img src="assets/images/hero_honey.jpg" alt="مرطبان عسل الأطلس المغربي الذهبي الطبيعي" class="w-full h-[360px] sm:h-[420px] object-cover" onerror="this.onerror=null; this.src='assets/images/hero_atlas_honey_1792267326345.jpg';">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#2C1E14]/75 via-transparent to-transparent flex flex-col justify-end p-6 text-white text-right">
                             <span class="text-xs font-semibold text-[#E5B552] mb-1">إنتاج جبلي أصيل</span>
                             <h3 class="text-lg font-bold font-cairo">عسل طبيعي غير مبستر من المناحل المغربية</h3>
@@ -233,11 +233,11 @@ $settings = $db['settings'] ?? [];
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <?php foreach ($products as $idx => $prod): 
                     $firstWeight = $prod['weights'][0] ?? ['weight' => 250, 'unit' => 'g', 'price' => 140];
-                    $imgUrl = str_replace('/src/', '', $prod['image'] ?? '');
+                    $imgUrl = ltrim(str_replace('/src/', '', $prod['image'] ?? ''), '/');
                 ?>
                 <div class="bg-white rounded-2xl border border-[#E8DFD0] overflow-hidden shadow-xs hover:shadow-lg transition-all flex flex-col justify-between" id="card-<?php echo htmlspecialchars($prod['id']); ?>">
                     <div class="relative aspect-[4/3] bg-[#F7F2EA] cursor-pointer" onclick="openProductModal('<?php echo htmlspecialchars($prod['id']); ?>')">
-                        <img src="<?php echo htmlspecialchars($imgUrl); ?>" alt="<?php echo htmlspecialchars($prod['name']); ?>" class="w-full h-full object-cover">
+                        <img src="<?php echo htmlspecialchars($imgUrl); ?>" alt="<?php echo htmlspecialchars($prod['name']); ?>" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/images/hero_honey.jpg';">
                         <div class="absolute top-3 right-3 bg-[#2C1E14]/85 text-white text-[11px] font-medium px-2.5 py-1 rounded-md">
                             📍 <?php echo htmlspecialchars(explode('(', $prod['sourceRegion'] ?? '')[0]); ?>
                         </div>
@@ -327,11 +327,11 @@ $settings = $db['settings'] ?? [];
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <?php foreach ($bundles as $bundle): 
-                    $bImgUrl = str_replace('/src/', '', $bundle['image'] ?? '');
+                    $bImgUrl = ltrim(str_replace('/src/', '', $bundle['image'] ?? ''), '/');
                 ?>
                 <div class="bg-white rounded-2xl border border-[#E3D8C6] overflow-hidden shadow-xs hover:shadow-xl transition-all flex flex-col justify-between">
                     <div class="relative aspect-[4/3] bg-[#EFE9DD]">
-                        <img src="<?php echo htmlspecialchars($bImgUrl); ?>" alt="<?php echo htmlspecialchars($bundle['name']); ?>" class="w-full h-full object-cover">
+                        <img src="<?php echo htmlspecialchars($bImgUrl); ?>" alt="<?php echo htmlspecialchars($bundle['name']); ?>" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/images/honey_bundle.jpg';">
                         <?php if (!empty($bundle['freeShipping'])): ?>
                         <div class="absolute top-3 right-3 bg-[#4A5D3E] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-sm">
                             🚚 توصيل مجاني
@@ -419,6 +419,64 @@ $settings = $db['settings'] ?? [];
                     <p class="text-xs text-[#6B5744] leading-relaxed">لا تحتاج لبطاقة بنكية. سجّل طلبك في أقل من دقيقة، وادفع نقداً لمندوب التوصيل بعد استلام ومعاينة طردك بكل راحة.</p>
                 </div>
             </div>
+
+            <!-- Natural Photo Gallery Strip (Apiaries, Flowers, Honeycombs, Packaging) -->
+            <div class="mt-14 bg-white p-6 sm:p-8 rounded-3xl border border-[#E8DFD0] shadow-xs">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-[#F0E8DA] pb-4 text-right">
+                    <div>
+                        <span class="text-xs font-semibold text-[#8C6016] bg-[#E5B552]/15 px-2.5 py-1 rounded-sm">مشاهد حية من الطبيعة</span>
+                        <h3 class="text-xl sm:text-2xl font-bold font-cairo text-[#2C1E14] mt-1.5">من قلب جبال الأطلس إلى منازلكم</h3>
+                    </div>
+                    <p class="text-xs sm:text-sm text-[#705D4C] max-w-md">صور حقيقية توثق بيئة الجني الطبيعية، نقاء الأزهار، وعناية التعبئة والتغليف قبل إرسال الطرود لزبنائنا في جميع المدن المغربية.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div class="group relative overflow-hidden rounded-2xl border border-[#E8DFD0] bg-[#F7F2EA] flex flex-col">
+                        <div class="relative aspect-[4/3] overflow-hidden">
+                            <img src="assets/images/apiary_atlas.jpg" alt="مناحل جبال الأطلس" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='assets/images/hero_honey.jpg';">
+                            <div class="absolute top-2.5 right-2.5 bg-[#2C1E14]/80 backdrop-blur-xs text-white p-1.5 rounded-lg text-xs">🏔️</div>
+                        </div>
+                        <div class="p-4 bg-white flex-1 flex flex-col justify-between text-right border-t border-[#F0E8DA]">
+                            <h4 class="font-bold text-sm text-[#2C1E14] font-cairo">مناحل جبال الأطلس</h4>
+                            <p class="text-xs text-[#6B5744] mt-1 line-clamp-2 leading-relaxed">خلايا نحل تقليدية في بيئة جبلية نقية خالية من الملوثات والمبيدات.</p>
+                        </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden rounded-2xl border border-[#E8DFD0] bg-[#F7F2EA] flex flex-col">
+                        <div class="relative aspect-[4/3] overflow-hidden">
+                            <img src="assets/images/wild_flowers.jpg" alt="زهور برية عطرية" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='assets/images/honey_thyme.jpg';">
+                            <div class="absolute top-2.5 right-2.5 bg-[#2C1E14]/80 backdrop-blur-xs text-white p-1.5 rounded-lg text-xs">🌸</div>
+                        </div>
+                        <div class="p-4 bg-white flex-1 flex flex-col justify-between text-right border-t border-[#F0E8DA]">
+                            <h4 class="font-bold text-sm text-[#2C1E14] font-cairo">زهور برية عطرية</h4>
+                            <p class="text-xs text-[#6B5744] mt-1 line-clamp-2 leading-relaxed">زعتر جبلي، دغموس، وأعشاب طبية نادرة يتغذى عليها النحل بحرية.</p>
+                        </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden rounded-2xl border border-[#E8DFD0] bg-[#F7F2EA] flex flex-col">
+                        <div class="relative aspect-[4/3] overflow-hidden">
+                            <img src="assets/images/honeycomb_nature.jpg" alt="أقراص شمع النحل الطبيعي" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='assets/images/honey_sidr.jpg';">
+                            <div class="absolute top-2.5 right-2.5 bg-[#2C1E14]/80 backdrop-blur-xs text-white p-1.5 rounded-lg text-xs">🍯</div>
+                        </div>
+                        <div class="p-4 bg-white flex-1 flex flex-col justify-between text-right border-t border-[#F0E8DA]">
+                            <h4 class="font-bold text-sm text-[#2C1E14] font-cairo">أقراص شمع النحل الطبيعي</h4>
+                            <p class="text-xs text-[#6B5744] mt-1 line-clamp-2 leading-relaxed">عسل حر خام لم يتعرض للتسخين أو المعالجة الصناعية للحفاظ على الإنزيمات.</p>
+                        </div>
+                    </div>
+
+                    <div class="group relative overflow-hidden rounded-2xl border border-[#E8DFD0] bg-[#F7F2EA] flex flex-col">
+                        <div class="relative aspect-[4/3] overflow-hidden">
+                            <img src="assets/images/honey_packaging.jpg" alt="تغليف زجاجي فاخر ومحكم" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='assets/images/honey_bundle.jpg';">
+                            <div class="absolute top-2.5 right-2.5 bg-[#2C1E14]/80 backdrop-blur-xs text-white p-1.5 rounded-lg text-xs">🛡️</div>
+                        </div>
+                        <div class="p-4 bg-white flex-1 flex flex-col justify-between text-right border-t border-[#F0E8DA]">
+                            <h4 class="font-bold text-sm text-[#2C1E14] font-cairo">تغليف زجاجي فاخر</h4>
+                            <p class="text-xs text-[#6B5744] mt-1 line-clamp-2 leading-relaxed">مرطبانات معقمة ومحكمة مع ملاعق خشبية وتغليف مضاد للصدمات للنقل.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -428,7 +486,7 @@ $settings = $db['settings'] ?? [];
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 <div class="lg:col-span-5 relative">
                     <div class="rounded-2xl overflow-hidden shadow-xl border-4 border-white bg-[#EDE5D8]">
-                        <img src="assets/images/honey_jar_thyme_1792267326022.jpg" alt="عسل الزعتر الجبلي" class="w-full h-[380px] object-cover">
+                        <img src="assets/images/honey_thyme.jpg" alt="عسل الزعتر الجبلي" class="w-full h-[380px] object-cover" onerror="this.onerror=null; this.src='assets/images/hero_honey.jpg';">
                     </div>
                 </div>
 
@@ -455,7 +513,119 @@ $settings = $db['settings'] ?? [];
         </div>
     </section>
 
-    <!-- 8. FAQ Section -->
+    <!-- 7.5 Customer Reviews Section -->
+    <section id="reviews" class="py-16 bg-[#FAF7F2] border-b border-[#E8DFD0]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-right">
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                <span class="text-xs font-semibold tracking-wider text-[#B87F17] uppercase">تجارب حقيقية وانطباعات التذوق</span>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#2C1E14] font-cairo">ماذا يقول متذوقو عسل مناحل الأطلس؟</h2>
+                <p class="text-sm sm:text-base text-[#614F3F]">نسعد بمشاركة انطباعات زبنائنا بعد استلام طرودهم في مختلف المدن المغربية. رضاكم عن نقاء العسل وأمانة التوصيل هو غايتنا الأولى.</p>
+            </div>
+
+            <!-- Reviews Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white p-6 rounded-2xl border border-[#E8DFD0] shadow-xs space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="text-[#D49B28] text-sm">★★★★★</div>
+                            <span class="text-[11px] text-stone-400">منذ أسبوعين</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-[#4E3E2F] leading-relaxed italic">
+                            "القوام ثقيل والنكهة العشبية حارة ومميزة كما عهدناها في مناطق الأطلس. التغليف كان ممتازاً في علبة كرتونية محمية بدون أي تسريب."
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-[#F0E8DA] flex items-center justify-between text-xs">
+                        <div>
+                            <strong class="text-[#2C1E14] block">هشام ل.</strong>
+                            <span class="text-stone-500 text-[11px]">الدار البيضاء</span>
+                        </div>
+                        <span class="text-[11px] text-[#8C6016] bg-[#E5B552]/15 px-2 py-0.5 rounded font-semibold">عسل الزعتر (500غ)</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-[#E8DFD0] shadow-xs space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="text-[#D49B28] text-sm">★★★★★</div>
+                            <span class="text-[11px] text-stone-400">منذ 3 أسابيع</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-[#4E3E2F] leading-relaxed italic">
+                            "الحرارة في الحلق واضحة جداً ودليل على أصالة الدغموس المغربي الحر. تم التوصيل في غضون 24 ساعة والدفع كان نقداً للموزع بعد الفحص."
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-[#F0E8DA] flex items-center justify-between text-xs">
+                        <div>
+                            <strong class="text-[#2C1E14] block">أمينة ب.</strong>
+                            <span class="text-stone-500 text-[11px]">الرباط</span>
+                        </div>
+                        <span class="text-[11px] text-[#8C6016] bg-[#E5B552]/15 px-2 py-0.5 rounded font-semibold">عسل الدغموس (250غ)</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-[#E8DFD0] shadow-xs space-y-4 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="text-[#D49B28] text-sm">★★★★★</div>
+                            <span class="text-[11px] text-stone-400">الشهر الماضي</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-[#4E3E2F] leading-relaxed italic">
+                            "فكرة الباقة الثلاثية ممتازة لمقارنة الأذواق وتجربة كل نوع. السدر رائع ومفضل للأطفال، والزعتر قوي جداً للإفطار الصباحي."
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-[#F0E8DA] flex items-center justify-between text-xs">
+                        <div>
+                            <strong class="text-[#2C1E14] block">عبد الرحيم س.</strong>
+                            <span class="text-stone-500 text-[11px]">مراكش</span>
+                        </div>
+                        <span class="text-[11px] text-[#8C6016] bg-[#E5B552]/15 px-2 py-0.5 rounded font-semibold">باقة التذوق الثلاثية</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Feedback Form -->
+            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-[#E8DFD0] shadow-xs max-w-2xl mx-auto">
+                <h3 class="text-lg font-bold font-cairo text-[#2C1E14] mb-2 text-center">هل جربت عسلنا؟ شاركنا انطباعك ورأيك</h3>
+                <p class="text-xs text-[#6B5744] text-center mb-6">رأيك يساعدنا على تطوير خدماتنا وتقديم أفضل ما في الطبيعة المغربية.</p>
+
+                <div id="reviewSuccessAlert" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs text-center font-medium mb-4">
+                    ✅ شكراً جزيلاً لك على مشاركة انطباعك! سيتم مراجعة رأيك ونشره في الموقع.
+                </div>
+
+                <form id="reviewSubmitForm" onsubmit="handleReviewSubmit(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-[#2C1E14] mb-1">اسمك الكريم:</label>
+                            <input type="text" id="revName" required placeholder="مثال: يوسف العلمي" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DDD3C1] text-xs bg-[#FAF7F2] focus:bg-white focus:outline-none focus:border-[#D49B28]">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-[#2C1E14] mb-1">المدينة:</label>
+                            <input type="text" id="revCity" required placeholder="مثال: فاس" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DDD3C1] text-xs bg-[#FAF7F2] focus:bg-white focus:outline-none focus:border-[#D49B28]">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-[#2C1E14] mb-1">نوع العسل الذي جربته:</label>
+                        <select id="revHoney" class="w-full px-3.5 py-2.5 rounded-xl border border-[#DDD3C1] text-xs bg-[#FAF7F2] focus:bg-white focus:outline-none focus:border-[#D49B28]">
+                            <option>عسل الزعتر الجبلي</option>
+                            <option>عسل الدغموس المغربي الحر</option>
+                            <option>عسل السدر الملكي</option>
+                            <option>عسل الأوكالبتوس</option>
+                            <option>عسل زهور الأطلس</option>
+                            <option>باقة التذوق الثلاثية</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-[#2C1E14] mb-1">انطباعك عن المذاق والتوصيل:</label>
+                        <textarea id="revComment" required rows="3" placeholder="صف لنا تجربة تذوقك، قوام العسل، وسرعة وصول الطرد..." class="w-full px-3.5 py-2.5 rounded-xl border border-[#DDD3C1] text-xs bg-[#FAF7F2] focus:bg-white focus:outline-none focus:border-[#D49B28]"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-[#D49B28] to-[#B87F17] hover:from-[#B87F17] hover:to-[#996D19] text-white font-bold text-xs shadow-md transition-all active:scale-98">
+                        إرسال التقييم
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FAQ Section (Full 8 Questions) -->
     <section id="faq" class="py-16 bg-[#F4EFE6] border-b border-[#E8DFD0]">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-right">
             <div class="text-center mb-12 space-y-3">
@@ -465,63 +635,91 @@ $settings = $db['settings'] ?? [];
             </div>
 
             <div class="space-y-3">
+                <!-- Question 1 -->
                 <details class="bg-white rounded-xl border border-[#E3D8C6] p-4 sm:p-5 group cursor-pointer" open>
                     <summary class="font-bold text-[#2C1E14] list-none flex justify-between items-center font-cairo text-sm sm:text-base">
-                        <span>ما هي أنواع العسل المغربي المتوفرة لديكم؟</span>
+                        <span>1. ما هي أنواع العسل المغربي المتوفرة لديكم؟</span>
                         <span class="text-[#B87F17] group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <p class="text-xs sm:text-sm text-[#554333] pt-3 border-t border-[#F0E8DA] mt-3 leading-relaxed">
-                        نوفر عسل الزعتر الجبلي الأصيل، عسل الدغموس الحر، عسل السدر الملكي، عسل الأوكالبتوس، عسل زهور الأطلس، وعسل الخروب، بالإضافة إلى باقات التذوق والإهداء.
+                        نوفر تشكيلة أصيلة مستخلصة من البيئات المغربية المتنوعة: عسل الزعتر الجبلي من الأطلس المتوسط، عسل الدغموس المغربي الحر من سوس ماسة، عسل السدر الملكي الفاخر، عسل الأوكالبتوس الطبيعي من غابات المعمورة، عسل زهور الأطلس البرية، وعسل الخروب، بالإضافة إلى باقات التذوق والإهداء الحصرية.
                     </p>
                 </details>
 
+                <!-- Question 2 -->
                 <details class="bg-white rounded-xl border border-[#E3D8C6] p-4 sm:p-5 group cursor-pointer">
                     <summary class="font-bold text-[#2C1E14] list-none flex justify-between items-center font-cairo text-sm sm:text-base">
-                        <span>ما هي الأوزان المتاحة لكل نوع؟</span>
+                        <span>2. ما هي الأوزان المتاحة لكل نوع؟</span>
                         <span class="text-[#B87F17] group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <p class="text-xs sm:text-sm text-[#554333] pt-3 border-t border-[#F0E8DA] mt-3 leading-relaxed">
-                        تتوفر أعسالنا بمرطبانات زجاجية معقمة بأوزان: 250 غرام (ربع كيلو)، 500 غرام (نصف كيلو)، و 1000 غرام (كيلوغرام كامل)، بالإضافة إلى باقات التذوق بوزن 750غ و 2 كلغ.
+                        تتوفر أعسالنا بمرطبانات زجاجية معقمة ومحكمة بأوزان: 250 غرام (ربع كيلو)، 500 غرام (نصف كيلو)، و 1000 غرام (كيلوغرام كامل). كما نقدم باقات خاصة بوزن 750 غرام وباقات عائلية بوزن 2 كيلوغرام.
                     </p>
                 </details>
 
+                <!-- Question 3 -->
                 <details class="bg-white rounded-xl border border-[#E3D8C6] p-4 sm:p-5 group cursor-pointer">
                     <summary class="font-bold text-[#2C1E14] list-none flex justify-between items-center font-cairo text-sm sm:text-base">
-                        <span>كيف يمكنني طلب العسل؟</span>
+                        <span>3. كيف يمكنني طلب العسل؟</span>
                         <span class="text-[#B87F17] group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <p class="text-xs sm:text-sm text-[#554333] pt-3 border-t border-[#F0E8DA] mt-3 leading-relaxed">
-                        اضغط على زر «اطلب الآن» عند أي منتج، واملأ اسمك، رقم هاتفك، ومدينتك وعنوانك بالتفصيل، ثم اضغط على «تأكيد الطلب». سيتصل بك فريقنا لتأكيد التسليم.
+                        الطلب بسيط وسريع للغاية: اختر العسل والوزن المناسب، واضغط على «اطلب الآن» أو «إضافة إلى السلة». املأ معلومات التوصيل البسيطة (الاسم، رقم الهاتف، والمدينة والعنوان)، ثم اضغط «تأكيد الطلب». لا يتطلب التسجيل أي حساب بنكي أو إنشاء حساب مسبق.
                     </p>
                 </details>
 
+                <!-- Question 4 -->
                 <details class="bg-white rounded-xl border border-[#E3D8C6] p-4 sm:p-5 group cursor-pointer">
                     <summary class="font-bold text-[#2C1E14] list-none flex justify-between items-center font-cairo text-sm sm:text-base">
-                        <span>هل يمكنني الدفع عند الاستلام (COD)؟</span>
+                        <span>4. هل يمكنني الدفع عند الاستلام (COD)؟</span>
                         <span class="text-[#B87F17] group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <p class="text-xs sm:text-sm text-[#554333] pt-3 border-t border-[#F0E8DA] mt-3 leading-relaxed">
-                        نعم بكل تأكيد! الدفع عند الاستلام هو وسيلتنا الأساسية. لا تدفع أي درهم حتى يصلك المندوب وتستلم طردك وتتفحصه بنفسك.
+                        نعم بكل تأكيد! نظام الدفع عند الاستلام (Cash on Delivery) هو خيارنا الأساسي والمفضل. لا تدفع أي درهم مسبقاً، بل تدفع نقداً لمندوب التوصيل بعد استلام الطرد ومعاينته والتأكد من سلامة المرطبان.
                     </p>
                 </details>
 
+                <!-- Question 5 -->
                 <details class="bg-white rounded-xl border border-[#E3D8C6] p-4 sm:p-5 group cursor-pointer">
                     <summary class="font-bold text-[#2C1E14] list-none flex justify-between items-center font-cairo text-sm sm:text-base">
-                        <span>كم تستغرق مدة التوصيل؟</span>
+                        <span>5. كم تستغرق مدة التوصيل وتكلفتها؟</span>
                         <span class="text-[#B87F17] group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <p class="text-xs sm:text-sm text-[#554333] pt-3 border-t border-[#F0E8DA] mt-3 leading-relaxed">
-                        تستغرق ما بين 24 إلى 48 ساعة في المدن الكبرى (الدار البيضاء، الرباط، مراكش، طنجة، فاس، أكادير، مكناس، القنيطرة)، وما بين 48 إلى 72 ساعة في باقي المناطق.
+                        يستغرق التوصيل بين 24 إلى 48 ساعة في المدن الرئيسية (الدار البيضاء، الرباط، مراكش، فاس، طنجة، أكادير، مكناس، القنيطرة)، وبين 48 إلى 72 ساعة في باقي أنحاء المملكة. رسوم التوصيل تبدأ من 25 درهماً، وتكون مجانية تماماً لأي طلب يتجاوز 500 درهم أو عند طلب الباقات الخاصة.
                     </p>
                 </details>
 
+                <!-- Question 6 -->
                 <details class="bg-white rounded-xl border border-[#E3D8C6] p-4 sm:p-5 group cursor-pointer">
                     <summary class="font-bold text-[#2C1E14] list-none flex justify-between items-center font-cairo text-sm sm:text-base">
-                        <span>كيف أحافظ على العسل؟</span>
+                        <span>6. هل العسل طبيعي وأصلي ومضمون؟</span>
                         <span class="text-[#B87F17] group-open:rotate-180 transition-transform">▼</span>
                     </summary>
                     <p class="text-xs sm:text-sm text-[#554333] pt-3 border-t border-[#F0E8DA] mt-3 leading-relaxed">
-                        يُحفظ في مرطبانه الزجاجي في درجة حرارة الغرفة (18-24°C) في مكان جاف ومظلم بعيداً عن الرطوبة والشمس المباشرة. لا تضعه في الثلاجة وتجنب الملاعق المبللة.
+                        نحن نلتزم بالشفافية الكاملة: عسلنا غير مبستر وغير معالج بالتسخين الصناعي الذي يتلف الإنزيمات الحية. نوضح منطقة الجني وموسم القطف لكل نوع، ونرحب بأي فحص مخبري يؤكد نقاء المنتج وخلوه من السكريات المضافة.
+                    </p>
+                </details>
+
+                <!-- Question 7 -->
+                <details class="bg-white rounded-xl border border-[#E3D8C6] p-4 sm:p-5 group cursor-pointer">
+                    <summary class="font-bold text-[#2C1E14] list-none flex justify-between items-center font-cairo text-sm sm:text-base">
+                        <span>7. ما هي طريقة حفظ العسل الصحيحة؟</span>
+                        <span class="text-[#B87F17] group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <p class="text-xs sm:text-sm text-[#554333] pt-3 border-t border-[#F0E8DA] mt-3 leading-relaxed">
+                        يُحفظ في مرطبانه الزجاجي الأصلي في درجة حرارة الغرفة العادية (بين 18 و 24 درجة مئوية) في مكان جاف ومظلم بعيداً عن الرطوبة والشمس المباشرة. لا تضعه أبداً في الثلاجة، وتجنب استخدام ملاعق مبللة بالماء عند الغرف.
+                    </p>
+                </details>
+
+                <!-- Question 8 -->
+                <details class="bg-white rounded-xl border border-[#E3D8C6] p-4 sm:p-5 group cursor-pointer">
+                    <summary class="font-bold text-[#2C1E14] list-none flex justify-between items-center font-cairo text-sm sm:text-base">
+                        <span>8. كيف يمكنني تتبع طلبي والتواصل معكم؟</span>
+                        <span class="text-[#B87F17] group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <p class="text-xs sm:text-sm text-[#554333] pt-3 border-t border-[#F0E8DA] mt-3 leading-relaxed">
+                        بمجرد تسجيل طلبك، يظهر لك رقم طلب فريد (مثل ATL-8291) مع زر فوري للتواصل عبر واتساب. كما يتصل بك فريقنا هاتفياً لتأكيد العنوان وموعد التسليم الأنسب لك، ويمكنك مراسلتنا في أي وقت عبر الرقم: <?php echo htmlspecialchars($settings['phone'] ?? '+212 661 234 567'); ?>.
                     </p>
                 </details>
             </div>
@@ -767,7 +965,7 @@ $settings = $db['settings'] ?? [];
                     return `
                         <div class="bg-white p-3 rounded-xl border border-[#E8DFD0] flex items-center justify-between text-xs">
                             <div class="flex items-center gap-2.5">
-                                <img src="${item.image.replace('/src/', '')}" class="w-12 h-12 rounded-lg object-cover bg-stone-100">
+                                <img src="${item.image.replace('/src/', '').replace(/^\//, '')}" class="w-12 h-12 rounded-lg object-cover bg-stone-100" onerror="this.onerror=null; this.src='assets/images/hero_honey.jpg';">
                                 <div>
                                     <strong class="text-[#2C1E14] block">${item.name}</strong>
                                     <span class="text-stone-500 text-[11px]">${item.weightLabel}</span>
@@ -1033,7 +1231,7 @@ $settings = $db['settings'] ?? [];
             const prod = STORE_PRODUCTS.find(p => p.id === prodId);
             if (!prod) return;
             const body = document.getElementById('productDetailBody');
-            const img = prod.image.replace('/src/', '');
+            const img = prod.image.replace('/src/', '').replace(/^\//, '');
             body.innerHTML = `
                 <div class="flex justify-between items-start">
                     <button onclick="closeProductModal()" class="text-stone-400 hover:text-stone-800 text-lg">✕</button>
@@ -1043,7 +1241,7 @@ $settings = $db['settings'] ?? [];
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                    <img src="${img}" class="rounded-2xl w-full h-64 object-cover">
+                    <img src="${img}" class="rounded-2xl w-full h-64 object-cover" onerror="this.onerror=null; this.src='assets/images/hero_honey.jpg';">
                     <div class="space-y-3">
                         <p class="text-xs text-stone-600 leading-relaxed">${prod.detailedDescription}</p>
                         <div class="text-xs space-y-1 bg-[#FAF7F2] p-3 rounded-xl border border-[#E8DFD0]">
@@ -1063,6 +1261,19 @@ $settings = $db['settings'] ?? [];
 
         function closeProductModal() {
             document.getElementById('productDetailModal').classList.add('hidden');
+        }
+
+        function handleReviewSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('reviewSubmitForm');
+            const alertBox = document.getElementById('reviewSuccessAlert');
+            if (alertBox) {
+                alertBox.classList.remove('hidden');
+                if (form) form.reset();
+                setTimeout(() => {
+                    alertBox.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
         }
 
         // Initialize UI

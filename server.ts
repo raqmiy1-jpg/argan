@@ -13,6 +13,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+// Static assets serving
+app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/src/assets', express.static(path.join(__dirname, 'src/assets')));
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Persistent Database File Path
 const DB_DIR = path.join(__dirname, 'data');
 const DB_FILE = path.join(DB_DIR, 'db.json');
@@ -33,7 +39,7 @@ const INITIAL_PRODUCTS: Product[] = [
     slug: 'moroccan-thyme-honey',
     shortDescription: 'عسل نادر بنكهة عطرية قوية من أعالي جبال الأطلس المتوسط.',
     detailedDescription: 'يُجنى عسل الزعتر من شجيرات الزعتر البري المنتشرة على سفوح جبال الأطلس المتوسط على ارتفاع يتجاوز 1400 متر. يتميز بلونه العنبري الداكن، وقوامه الكثيف، ونكهته العشبية الحارة الفريدة المحبوبة في التقاليد المغربية الأصيلة.',
-    image: '/src/assets/images/honey_jar_thyme_1792267326022.jpg',
+    image: '/assets/images/honey_thyme.jpg',
     sourceRegion: 'جبال الأطلس المتوسط (إيموزار مرموشة / خنيفرة)',
     harvestSeason: 'أواخر فصل الصيف (يوليوز - غشت)',
     textureAndTaste: 'قوام ثقيل ومخملي مع لمسة حارة عطرية ونهاية خشبية لطيفة',
@@ -63,7 +69,7 @@ const INITIAL_PRODUCTS: Product[] = [
     slug: 'moroccan-daghmous-honey',
     shortDescription: 'نكهة دافئة لاذعة فريدة تشتهر بها نبتة الدغموس الشوكية في الجنوب المغربي.',
     detailedDescription: 'يُستخلص هذا العسل الاستثنائي من أزهار نبات الدغموس (Euphorbia resinifera)، وهو نبات شوكي مستوطن في المغرب خاصة بمناطق سوس ماسة وحوض درعة. يتميز بإحساس حرارة ولذعة دافئة لطيفة في الحلق فور تذوقه.',
-    image: '/src/assets/images/honey_jar_daghmous_1792267326881.jpg',
+    image: '/assets/images/honey_daghmous.jpg',
     sourceRegion: 'سوس ماسة وسفوح الأطلس الصغير (تيزنيت / تارودانت)',
     harvestSeason: 'أوائل الصيف (ماي - يونيو)',
     textureAndTaste: 'قوام ناعم غني مع حرارة مميزة ومذاق لاذع يترك إحساساً دافئاً',
@@ -89,7 +95,7 @@ const INITIAL_PRODUCTS: Product[] = [
     slug: 'royal-moroccan-sidr-honey',
     shortDescription: 'قوام كثيف ومذاق كراميلي ساحر من أشجار السدر العتيقة.',
     detailedDescription: 'عسل السدر الملكي المقطوف من أشجار النبق البرية الموغلة في القدم على التلال المغربية المشمسة. يحظى بشهرة واسعة لمذاقه الهادئ الغني ونقائه الفائق ونكهته العسلية الرائعة التي ترضي أرقى الأذواق.',
-    image: '/src/assets/images/honey_jar_sidr_1792267327022.jpg',
+    image: '/assets/images/honey_sidr.jpg',
     sourceRegion: 'سهول وتلال الشاوية وتادلة أزيلال',
     harvestSeason: 'فصل الخريف (شتنبر - أكتوبر)',
     textureAndTaste: 'كثافة عالية ولزوجة مخملية مع نكهة حلوة متوازنة بنفحات كراميلية',
@@ -115,7 +121,7 @@ const INITIAL_PRODUCTS: Product[] = [
     slug: 'moroccan-eucalyptus-honey',
     shortDescription: 'رائحة منعشة ومذاق معتدل مستخلص من غابات الكاليبتوس المغربية.',
     detailedDescription: 'يُجمع من غابات أشجار الأوكالبتوس الشاسعة في المغرب مثل غابة المعمورة ومنطقة الغرب. عسل مفضل للعائلات بفضل مذاقه المنعش ونفحاته الخفيفة التي تجمع بين الحلاوة والانتعاش الخفيف.',
-    image: '/src/assets/images/honey_jar_daghmous_1792267326881.jpg',
+    image: '/assets/images/honey_eucalyptus.jpg',
     sourceRegion: 'غابات المعمورة وحوض الغرب',
     harvestSeason: 'فصل الربيع وبداية الصيف (أبريل - يونيو)',
     textureAndTaste: 'قوام متوسط السيولة وسهل الدهن، بنكهة خشبية منعشة ومحببة',
@@ -135,7 +141,7 @@ const INITIAL_PRODUCTS: Product[] = [
     slug: 'atlas-mountain-wildflower-honey',
     shortDescription: 'توليفة زهرية متعددة المصادر من مروج ومراعي جبال الأطلس الخضراء.',
     detailedDescription: 'عسل متعدد الأزهار يجمعه النحل من باقة غنية من أزهار الجبل العفوية مثل الخزامى، إكليل الجبل، البابونج البري، وأزهار المروج الجبلية. يتميز بنكهة متوازنة ومحبوبة لدى الكبار والصغار.',
-    image: '/src/assets/images/hero_atlas_honey_1792267326345.jpg',
+    image: '/assets/images/honey_wildflower.jpg',
     sourceRegion: 'جبال الأطلس الكبير وورزازات',
     harvestSeason: 'موسم الربيع (مارس - ماي)',
     textureAndTaste: 'ناعم وسلس بنكهة فواحة متوازنة غير حادة',
@@ -155,7 +161,7 @@ const INITIAL_PRODUCTS: Product[] = [
     slug: 'moroccan-carob-honey',
     shortDescription: 'عسل داكن ذو خصائص هضمية ممتازة ومذاق ترابي محلى راقٍ.',
     detailedDescription: 'يُقطف من أزهار شجرة الخروب المعمرة في سفوح جبال الريف والأطلس المتوسط. يتمتع بقيمة غذائية عالية ونكهة خاصة قريبة من حبوب الكاكاو الخفيفة والكراميل الطبيعي.',
-    image: '/src/assets/images/honey_jar_thyme_1792267326022.jpg',
+    image: '/assets/images/honey_carob.jpg',
     sourceRegion: 'إقليم تاونات وسفوح مقدمة الريف',
     harvestSeason: 'فصل الخريف (أكتوبر - نونبر)',
     textureAndTaste: 'قوام سميك مخملي، مع حلاوة خفيفة غير طاغية',
@@ -177,7 +183,7 @@ const INITIAL_BUNDLES: HoneyBundle[] = [
     name: 'باقة التذوق والاستكشاف الثلاثية',
     slug: 'atlas-trio-discovery-pack',
     description: 'المجموعة المثالية للتعرف على أروع نكهات العسل المغربي. تحتوي على 3 مرطبانات فاخرة (250غ لكل مرطبان): عسل الزعتر الجبلي، عسل الدغموس الحر، وعسل السدر الملكي، مرفقة بملعقة عسل خشبية مصنوعة يدوياً.',
-    image: '/src/assets/images/honey_discovery_bundle_1792267327536.jpg',
+    image: '/assets/images/honey_bundle.jpg',
     jarsCount: 3,
     totalWeightGrams: 750,
     price: 390,
@@ -197,7 +203,7 @@ const INITIAL_BUNDLES: HoneyBundle[] = [
     name: 'باقة مناعة الأطلس الثنائية',
     slug: 'atlas-immunity-duo-pack',
     description: 'مزيج القوة والأصالة المغربية. مرطبانان بوزن نصف كيلوغرام لكل منهما من أقوى نوعين: عسل الدغموس الحار وعسل الزعتر الجبلي المركز.',
-    image: '/src/assets/images/honey_jar_daghmous_1792267326881.jpg',
+    image: '/assets/images/honey_daghmous.jpg',
     jarsCount: 2,
     totalWeightGrams: 1000,
     price: 490,
@@ -215,7 +221,7 @@ const INITIAL_BUNDLES: HoneyBundle[] = [
     name: 'باقة العائلة اليومية (2 كيلوغرام)',
     slug: 'atlas-family-everyday-pack',
     description: 'العسل الطبيعي لكل أفراد العائلة لوجبات الإفطار والتحلية الطبيعية اليومية. مرطبانان كبيران بحجم 1 كيلوغرام لكل منهما: عسل زهور الأطلس وعسل الأوكالبتوس.',
-    image: '/src/assets/images/hero_atlas_honey_1792267326345.jpg',
+    image: '/assets/images/honey_wildflower.jpg',
     jarsCount: 2,
     totalWeightGrams: 2000,
     price: 560,
@@ -233,7 +239,7 @@ const INITIAL_BUNDLES: HoneyBundle[] = [
     name: 'باقة الهدية الملكية الفاخرة',
     slug: 'atlas-royal-gift-collection',
     description: 'أفخم هدية تقدمها لمن تحب. مرطبان سدر ملكي نصف كيلو + مرطبان دغموس نصف كيلو في صندوق خشبي تقليدي مزخرف مع ملعقة زيتون أصلية وبطاقة إهداء مخصصة.',
-    image: '/src/assets/images/honey_jar_sidr_1792267327022.jpg',
+    image: '/assets/images/honey_sidr.jpg',
     jarsCount: 2,
     totalWeightGrams: 1000,
     price: 590,
